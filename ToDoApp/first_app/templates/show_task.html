@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block contant %}
+{% if data %}
+<div style="width:70%; margin:auto;">
+    <h1>Your Task---</h1>
+    <hr>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in data %}
+          {% if item.tarck == False %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.Title}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.status}}</td>
+            <td>
+            <div class="text-center">
+            <a href="{% url 'edit_task' id=item.id %}" class="btn btn-warning btn-sm mx-3">Edit</a>
+            <a href="{% url 'Delete_Task' id=item.id %}" class="btn btn-danger btn-sm mx-3">Delete</a>
+            <a href="{% url 'comp_Task' id=item.id %}"  class="btn btn-success btn-sm mx-3">Complated</a>
+        </div>
+        </td>
+        </tr>
+        {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% else %}
+<h1>No Your Task</h1>
+{% endif %}
+{% endblock  %}
